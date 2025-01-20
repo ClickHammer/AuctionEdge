@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-const DB_NAME = "AuctionEdge";
+
 
 const connectDB = async () => {
     try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
+        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.DB_NAME}`);
         console.log("MongoDB connection Successful");   
       
     } catch (error) {

@@ -1,6 +1,6 @@
-import { Auction } from "../models/AuctionSchema.js";
-import { User } from "../models/userSchema.js";
-import { Bid } from "../models/bidSchema.js";
+import { Auction } from "../models/AuctionSchema.model.js";
+import { User } from "../models/UserSchema.model.js";
+// import { Bid } from "../models/bidSchema.model.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/error.js";
 import { v2 as cloudinary } from "cloudinary";
@@ -8,14 +8,14 @@ import mongoose from "mongoose";
 
 export const addNewAuctionItem = catchAsyncErrors(async (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
-    return next(new ErrorHandler("Auction item image required.", 400));
+    return next(new ErrorHandler("Auction item image is required.", 400));
   }
 
   const { image } = req.files;
 
   const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
   if (!allowedFormats.includes(image.mimetype)) {
-    return next(new ErrorHandler("File format not supported.", 400));
+    return next(new ErrorHandler("File format is not supported.", 400));
   }
 
   const {
@@ -61,11 +61,12 @@ export const addNewAuctionItem = catchAsyncErrors(async (req, res, next) => {
   if (alreadyOneAuctionActive.length > 0) {
     return next(new ErrorHandler("You already have one active auction.", 400));
   }
+  
   try {
     const cloudinaryResponse = await cloudinary.uploader.upload(
       image.tempFilePath,
       {
-        folder: "MERN_AUCTION_PLATFORM_AUCTIONS",
+        folder: "AuctionEdge",
       }
     );
     if (!cloudinaryResponse || cloudinaryResponse.error) {
@@ -162,7 +163,7 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
   }
   if (!req.body.startTime || !req.body.endTime) {
     return next(
-      new ErrorHandler("Starttime and Endtime for republish is mandatory.")
+      new ErrorHandler("StartTime and EndTime for republish is mandatory.")
     );
   }
   if (new Date(auctionItem.endTime) > Date.now()) {
@@ -191,12 +192,12 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  if (auctionItem.highestBidder) {
-    const highestBidder = await User.findById(auctionItem.highestBidder);
-    highestBidder.moneySpent -= auctionItem.currentBid;
-    highestBidder.auctionsWon -= 1;
-    highestBidder.save();
-  }
+  // if (auctionItem.highestBidder) {
+  //   const highestBidder = await User.findById(auctionItem.highestBidder);
+  //   highestBidder.moneySpent -= auctionItem.currentBid;
+  //   highestBidder.auctionsWon -= 1;
+  //   highestBidder.save();
+  // }
 
   data.bids = [];
   data.commissionCalculated = false;
@@ -207,7 +208,7 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
     runValidators: true,
     useFindAndModify: false,
   });
-  await Bid.deleteMany({ auctionItem: auctionItem._id });
+  // await Bid.deleteMany({ auctionItem: auctionItem._id });
   const createdBy = await User.findByIdAndUpdate(
     req.user._id,
     { unpaidCommission: 0 },
