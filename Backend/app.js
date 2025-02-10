@@ -8,6 +8,7 @@ import { errorMiddleware } from "./middlewares/error.js";
 import userRouter from "./router/userRoutes.js";
 import commissionRouter from "./router/commissionRouter.js";
 import auctionItemRouter from "./router/auctionItemRoutes.js"
+import superAdminRouter from "./router/superAdminRoutes.js";
 import bidRouter from "./router/bidRoutes.js";
 const app=express()
 config({
@@ -32,6 +33,7 @@ app.use("/api/v1/user",userRouter);
 app.use("/api/v1/auctionitem",auctionItemRouter);
 app.use("/api/v1/commission", commissionRouter);
 app.use("/api/v1/bid",bidRouter);
+app.use("/api/v1/superadmin", superAdminRouter);
 connectDB();
 
 app.use(errorMiddleware);
