@@ -6,6 +6,8 @@ import fileUpload from "express-fileupload";
 import connectDB from "./database/connection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import userRouter from "./router/userRoutes.js";
+import auctionItemRouter from "./router/auctionItemRoutes.js"
+import bidRouter from "./router/bidRoutes.js";
 
 const app=express()
 config({
@@ -27,6 +29,8 @@ app.use(fileUpload({
   tempFileDir:"/tmp/",
 }));
 app.use("/api/v1/user",userRouter);
+app.use("/api/v1/auctionitem",auctionItemRouter);
+app.use("/api/v1/bid",bidRouter);
 connectDB();
 app.use(errorMiddleware);
 
