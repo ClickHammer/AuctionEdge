@@ -55,7 +55,7 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['Auctioneer', 'Bidder', 'Admin'],
+      enum: ['Auctioneer', 'Bidder', 'Super Admin'],
       default: 'Bidder',
     },
     unpaidCommission: {
