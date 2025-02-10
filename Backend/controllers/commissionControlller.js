@@ -5,7 +5,7 @@ import { User } from "../models/userSchema.js";
 import { Auction } from "../models/auctionSchema.js";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
-
+//commission controller 
 export const calculateCommission = async (auctionId) => {
   const auction = await Auction.findById(auctionId);
   if (!mongoose.Types.ObjectId.isValid(auctionId)) {
