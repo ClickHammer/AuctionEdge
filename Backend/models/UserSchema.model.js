@@ -90,5 +90,6 @@ UserSchema.methods.getJwtToken = function () {
     expiresIn: process.env.JWT_EXPIRES_TIME,
   });
 };
+export const User = mongoose.models.User || mongoose.model("User", UserSchema);
+//export const User= mongoose.model('User', UserSchema);
 
-export const User= mongoose.model('User', UserSchema);
