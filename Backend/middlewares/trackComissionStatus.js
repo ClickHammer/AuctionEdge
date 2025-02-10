@@ -5,7 +5,7 @@ import ErrorHandler from "../middlewares/error.js";
 export const trackComissionStatus = catchAsyncErrors(async (req, res, next) => {
     const user=await User.findById(req.user._id);
      if(user.unpaidCommission){
-         return next(new ErrorHandler("Youi have unpaid commissions. Please pay them before posting a new auction.", 400));
+         return next(new ErrorHandler("You have unpaid commissions. Please pay them before posting a new auction.", 400));
      }
     next();
     });

@@ -55,7 +55,7 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['Auctioneer', 'Bidder', 'Admin'],
+      enum: ['Auctioneer', 'Bidder', 'Super Admin'],
       default: 'Bidder',
     },
     unpaidCommission: {
@@ -90,5 +90,6 @@ UserSchema.methods.getJwtToken = function () {
     expiresIn: process.env.JWT_EXPIRES_TIME,
   });
 };
+export const User = mongoose.models.User || mongoose.model("User", UserSchema);
+//export const User= mongoose.model('User', UserSchema);
 
-export const User= mongoose.model('User', UserSchema);
