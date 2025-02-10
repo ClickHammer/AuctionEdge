@@ -148,7 +148,7 @@ export const removeFromAuction = catchAsyncErrors(async (req, res, next) => {
   await auctionItem.deleteOne();
   res.status(200).json({
     success: true,
-    message: "Auction item deleted successfully.",
+    message: "Auction item deleted successfully. ",
   });
 });
 
