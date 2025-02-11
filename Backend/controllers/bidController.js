@@ -10,7 +10,7 @@ export const placeBid = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Auction not found.",404));
     }
     const {amount}=req.body;
-    if(!amount){
+    if(!amount){        
         return next(new ErrorHandler("Please enter the amount.",404));
     }
     if(amount<=auctionItem.currentBid){
