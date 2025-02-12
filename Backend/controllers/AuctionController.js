@@ -1,6 +1,6 @@
 import { Auction } from "../models/AuctionSchema.model.js";
 import { User } from "../models/UserSchema.model.js";
-// import { Bid } from "../models/bidSchema.model.js";
+import { Bid } from "../models/bidSchema.model.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/error.js";
 import { v2 as cloudinary } from "cloudinary";
@@ -192,12 +192,12 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
     );
   }
 
-  // if (auctionItem.highestBidder) {
-  //   const highestBidder = await User.findById(auctionItem.highestBidder);
-  //   highestBidder.moneySpent -= auctionItem.currentBid;
-  //   highestBidder.auctionsWon -= 1;
-  //   highestBidder.save();
-  // }
+  if (auctionItem.highestBidder) {
+    const highestBidder = await User.findById(auctionItem.highestBidder);
+    highestBidder.moneySpent -= auctionItem.currentBid;
+    highestBidder.auctionsWon -= 1;
+    highestBidder.save();
+  }
 
   data.bids = [];
   data.commissionCalculated = false;
@@ -208,7 +208,7 @@ export const republishItem = catchAsyncErrors(async (req, res, next) => {
     runValidators: true,
     useFindAndModify: false,
   });
-  // await Bid.deleteMany({ auctionItem: auctionItem._id });
+  await Bid.deleteMany({ auctionItem: auctionItem._id });
   const createdBy = await User.findByIdAndUpdate(
     req.user._id,
     { unpaidCommission: 0 },
