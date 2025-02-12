@@ -6,6 +6,8 @@ import {
   getAllPaymentProofs,
   getPaymentProofDetail,
   updateProofStatus,
+  fetchAllUsers,
+  monthlyRevenue
 } from "../controllers/superAdminController.js";
 
 const router = express.Router();
@@ -45,6 +47,19 @@ router.delete(
   deletePaymentProof
 );
 
+router.get(
+    "/users/getall" ,
+    isAuthenticated,
+    isAuthorized("Super Admin"),
+    fetchAllUsers
+)
+
+router.get(
+    "/monthlyincome" ,
+    isAuthenticated,
+    isAuthorized("Super Admin"),
+    monthlyRevenue
+)
 
 
 export default router;
