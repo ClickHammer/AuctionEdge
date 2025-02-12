@@ -16,21 +16,7 @@ const App = () => {
     <Router>
       <SideDrawer />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/submit-commission" element={<SubmitCommission />} />
-        <Route path="/how-it-works-info" element={<HowItWorks />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/auctions" element={<Auctions />} />
-        <Route path="/auction/item/:id" element={<AuctionItem />} />
-        <Route path="/create-auction" element={<CreateAuction />} />
-        <Route path="/view-my-auctions" element={<ViewMyAuctions />} />
-        <Route path="/auction/details/:id" element={<ViewAuctionDetails />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/me" element={<UserProfile />} />
+      <Route path="/" element={<Home />} />
       </Routes>
       <ToastContainer position="top-right" />
     </Router>
