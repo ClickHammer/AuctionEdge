@@ -1,25 +1,22 @@
 import React from 'react'
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SideDrawer from "./layout/SideDrawer";
-import Home from "./pages/Home";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import SideDrawer from "./layout/SideDrawer";
+import Home from "./pages/Home.jsx";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUser());
-    dispatch(getAllAuctionItems());
-    dispatch(fetchLeaderboard());
-  }, []);
+  
   return (
-    <Router>
-      <SideDrawer />
+    <div>
+      <Router>
+      {/* { <SideDrawer /> } */}
       <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path='/' element={<Home/>} />
       </Routes>
-      <ToastContainer position="top-right" />
-    </Router>
+      </Router>
+      {/* { <ToastContainer position="top-right" /> } */}
+      </div>
   );
 };
 export default App
