@@ -11,7 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaFileInvoiceDollar } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "@/store/slices/UserSlice";
+import { logout } from "@/store/slices/UserSlice.js";
 import { Link } from "react-router-dom";
 
 const SideDrawer = () => {
