@@ -9,13 +9,16 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from './pages/Login';
 import SubmitCommission from "./pages/SubmitCommission";
 import { useDispatch } from 'react-redux';
-import { fetchUser } from './store/slices/UserSlice';
+import { fetchLeaderboard, fetchUser } from './store/slices/UserSlice';
 import HowItWorks from './pages/HowItWorks';
 import About from './pages/About';
+import { getAllAuctionItems } from './store/slices/auctionSlice';
 const App = () => {
   const dispatch=useDispatch();
   useEffect(()=>{
-    dispatch(fetchUser());
+    dispatch(fetchUser()),
+    dispatch(getAllAuctionItems(),
+  dispatch(fetchLeaderboard()));
   },[]);
   
   return (

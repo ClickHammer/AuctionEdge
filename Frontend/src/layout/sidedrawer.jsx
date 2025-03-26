@@ -33,7 +33,7 @@ const SideDrawer = () => {
         <GiHamburgerMenu />
       </div>
       <div
-        className={`w-[100%] sm:w-[300px] bg-[#f6f4f0] h-full fixed top-0 ${
+        className={`w-[100%] sm:w-[300px] bg-[#ffffff] h-full fixed top-0 ${
           show ? "left-0" : "left-[-100%]"
         } transition-all duration-100 p-4 flex flex-col justify-between lg:left-0 border-r-[1px] border-r-stone-500`}
       >
@@ -110,7 +110,7 @@ const SideDrawer = () => {
                 </Link>
                 <Link
                   to={"/login"}
-                  className="text-[#DECCBE] bg-transparent border-[#DECCBE] border-2 hover:bg-[#fffefd] hover:text-[#fdba88] font-bold text-xl py-1 px-4 rounded-md"
+                  className="text-[#ffffff] bg-transparent border-[#DECCBE] border-2 hover:bg-[#fffefd] hover:text-[#fdba88] font-bold text-xl py-1 px-4 rounded-md"
                 >
                   Login
                 </Link>

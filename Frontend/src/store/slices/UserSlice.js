@@ -155,4 +155,23 @@ export const logout = () => async (dispatch) => {
       console.error(error);
     }
   };
+  export const fetchLeaderboard = () => async (dispatch) => {
+    dispatch(UserSlice.actions.fetchLeaderboardRequest());
+    try {
+      const response = await axios.get(
+        "http://localhost:4000/api/v1/user/leaderboard",
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(
+        UserSlice.actions.fetchLeaderboardSuccess(response.data.leaderboard)
+      );
+      dispatch(UserSlice.actions.clearAllErrors());
+    } catch (error) {
+      dispatch(UserSlice.actions.fetchLeaderboardFailed());
+      dispatch(UserSlice.actions.clearAllErrors());
+      console.error(error);
+    }
+  };
 export default UserSlice.reducer;
