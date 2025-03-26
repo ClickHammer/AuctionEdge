@@ -141,4 +141,18 @@ export const logout = () => async (dispatch) => {
       dispatch(UserSlice.actions.clearAllErrors());
     }
   };
+  export const fetchUser = () => async (dispatch) => {
+    dispatch(UserSlice.actions.fetchUserRequest());
+    try {
+      const response = await axios.get("http://localhost:4000/api/v1/user/me", {
+        withCredentials: true,
+      });
+      dispatch(UserSlice.actions.fetchUserSuccess(response.data.user));
+      dispatch(UserSlice.actions.clearAllErrors());
+    } catch (error) {
+      dispatch(UserSlice.actions.fetchUserFailed());
+      dispatch(UserSlice.actions.clearAllErrors());
+      console.error(error);
+    }
+  };
 export default UserSlice.reducer;
