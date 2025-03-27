@@ -86,6 +86,7 @@ const UserSlice = createSlice({
       },
     },
 });  
+
 export const register = (data) => async (dispatch) => {
   dispatch(UserSlice.actions.registerRequest());
   try {
@@ -106,6 +107,7 @@ export const register = (data) => async (dispatch) => {
     dispatch(UserSlice.actions.clearAllErrors());
   }
 };
+
 export const login = (data) => async (dispatch) => {
   dispatch(UserSlice.actions.loginRequest());
   try {
@@ -126,6 +128,7 @@ export const login = (data) => async (dispatch) => {
     dispatch(UserSlice.actions.clearAllErrors());
   }
 };
+
 export const logout = () => async (dispatch) => {
     try {
       const response = await axios.get(
@@ -141,6 +144,7 @@ export const logout = () => async (dispatch) => {
       dispatch(UserSlice.actions.clearAllErrors());
     }
   };
+
   export const fetchUser = () => async (dispatch) => {
     dispatch(UserSlice.actions.fetchUserRequest());
     try {
@@ -155,6 +159,7 @@ export const logout = () => async (dispatch) => {
       console.error(error);
     }
   };
+
   export const fetchLeaderboard = () => async (dispatch) => {
     dispatch(UserSlice.actions.fetchLeaderboardRequest());
     try {
@@ -174,4 +179,5 @@ export const logout = () => async (dispatch) => {
       console.error(error);
     }
   };
+  
 export default UserSlice.reducer;

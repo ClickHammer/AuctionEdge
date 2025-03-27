@@ -5,6 +5,7 @@ import SideDrawer from "./layout/SideDrawer";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home.jsx";
 import { ToastContainer } from "react-toastify";
+import Leaderboard from "./pages/Leaderboard";
 import "react-toastify/dist/ReactToastify.css";
 import Login from './pages/Login';
 import SubmitCommission from "./pages/SubmitCommission";
@@ -13,6 +14,8 @@ import { fetchLeaderboard, fetchUser } from './store/slices/UserSlice';
 import HowItWorks from './pages/HowItWorks';
 import About from './pages/About';
 import { getAllAuctionItems } from './store/slices/auctionSlice';
+import Auctions from "./pages/Auctions";
+import AuctionItem from "./pages/AuctionItem";
 const App = () => {
   const dispatch=useDispatch();
   useEffect(()=>{
@@ -31,7 +34,10 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/submit-commission" element={<SubmitCommission />} />
       <Route path="/how-it-works-info" element={<HowItWorks />} />
-        <Route path="/about" element={<About />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="/auctions" element={<Auctions />} />
+      <Route path="/auction/item/:id" element={<AuctionItem />} />
       </Routes>
       </Router>
       { <ToastContainer position="top-right" /> }
