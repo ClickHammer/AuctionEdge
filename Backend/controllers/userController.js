@@ -30,13 +30,9 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     if (!userName || !email || !password || !phone || !address || !role) {
         return next(new ErrorHandler("All fields are required.", 400));
     }
-    if (role === "Auctioneer" && (!bankAccountNumber || !bankName || !ifscCode || !bankAccountHolderName)) {
+    if (role === "Auctioneer" && (!bankAccountNumber || !bankName || !ifscCode || !bankAccountHolderName||!upiId)) {
         return next(new ErrorHandler("Please provide Bank Details", 400));
     }
-    if(!upiId){
-        return next(new ErrorHandler("Please provide UPI ID", 400));
-    }
-
     const isRegistered=await User.findOne({
         email
     });
