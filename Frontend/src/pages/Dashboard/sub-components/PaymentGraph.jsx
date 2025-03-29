@@ -46,20 +46,37 @@ const PaymentGraph = () => {
       {
         label: "Total Payment Received",
         data: monthlyRevenue,
-        backgroundColor: "#D6482B",
+        backgroundColor: "rgba(214, 72, 43, 0.8)",
+        borderColor: "#D6482B",
+        borderWidth: 2,
+        borderRadius: 8,
+        hoverBackgroundColor: "rgba(214, 72, 43, 1)",
       },
     ],
   };
 
   const options = {
+    responsive: true,
     scales: {
       y: {
         beginAtZero: true,
         max: 5000,
         ticks: {
+          color: "#ffffff",
           callback: function (value) {
-            return value.toLocaleString();
+            return "$" + value.toLocaleString();
           },
+        },
+        grid: {
+          color: "rgba(255, 255, 255, 0.2)",
+        },
+      },
+      x: {
+        ticks: {
+          color: "#ffffff",
+        },
+        grid: {
+          color: "rgba(255, 255, 255, 0.2)",
         },
       },
     },
@@ -67,11 +84,29 @@ const PaymentGraph = () => {
       title: {
         display: true,
         text: "Monthly Total Payments Received",
+        color: "#ffffff",
+        font: {
+          size: 18,
+          weight: "bold",
+        },
       },
+      legend: {
+        labels: {
+          color: "#ffffff",
+        },
+      },
+    },
+    animation: {
+      duration: 1500,
+      easing: "easeOutBounce",
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <div className="bg-gray-900 p-6 rounded-lg shadow-lg">
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
 
 export default PaymentGraph;
