@@ -75,7 +75,8 @@ const SignUp = () => {
             </select>
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="p-2 border rounded" required />
             <input type="file" onChange={imageHandler} className="p-2 border rounded col-span-2" />
-            {profileImagePreview && <img src={profileImagePreview} alt="Profile Preview" className="w-20 h-20 object-cover rounded-full mx-auto col-span-2" />}
+
+            {profileImagePreview && <img src={profileImagePreview} alt="Profile Preview" className="w-20 h-20 object-cover rounded-full mx-auto col-span-2" />} 
             {role === "Auctioneer" && (
               <>
                 <input type="text" placeholder="Bank Account Holder Name" value={bankAccountHolderName} onChange={(e) => setbankAccountHolderName(e.target.value)} className="p-2 border rounded" required />
