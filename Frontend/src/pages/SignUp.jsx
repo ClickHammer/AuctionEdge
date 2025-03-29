@@ -1,179 +1,96 @@
-import React, { useState } from "react";
+import { register } from "@/store/slices/UserSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    address: "",
-    role: "",
-    password: "",
-    profileImage: null,
-    bank: "",
-    accountNumber: "",
-    bankUserName: "",
-    ifscCode: "",
-    upiId: "",
-  });
+const SignUp = () => {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [role, setRole] = useState("");
+  const [password, setPassword] = useState("");
+  const [bankAccountHolderName, setbankAccountHolderName] = useState("");
+  const [bankAccountNumber, setBankAccountNumber] = useState("");
+  const [bankName, setBankName] = useState("");
+  const [ifscCode, setifscCode] = useState("");
+  const [upiId, setupiId] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+  const [profileImagePreview, setProfileImagePreview] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const navigateTo = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, profileImage: e.target.files[0] });
-  };
-
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Signup Data: ", formData);
+    const formData = new FormData();
+    formData.append("userName", userName);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("password", password);
+    formData.append("address", address);
+    formData.append("role", role);
+    formData.append("profileImage", profileImage);
+    if (role === "Auctioneer") {
+      formData.append("bankAccountHolderName", bankAccountHolderName);
+      formData.append("bankAccountNumber", bankAccountNumber);
+      formData.append("bankName", bankName);
+      formData.append("ifscCode", ifscCode);
+      formData.append("upiId", upiId);
+    }
+    dispatch(register(formData));
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigateTo("/");
+    }
+  }, [isAuthenticated]);
+
+  const imageHandler = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setProfileImagePreview(reader.result);
+      setProfileImage(file);
+    };
   };
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl w-full">
-        <h1 className="text-3xl font-bold text-[#15317E] text-center mb-6">
-          Sign Up
-        </h1>
-        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
-          {/* Personal Details */}
-          <div className="col-span-2">
-            <h2 className="text-lg font-semibold text-[#00000080]">
-              Personal Details
-            </h2>
-          </div>
-
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Full Name"
-            value={formData.fullName}
-            onChange={handleChange}
-            className="input-field"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            className="input-field"
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="input-field"
-          />
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={formData.address}
-            onChange={handleChange}
-            className="input-field"
-          />
-
-          {/* Role & Password */}
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="input-field"
-          >
-            <option value="">Select Role</option>
-            <option value="bidder">Bidder</option>
-            <option value="auctioneer">Auctioneer</option>
-          </select>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="input-field"
-          />
-
-          {/* Profile Image Upload */}
-          <div className="col-span-2">
-            <label className="block font-medium text-gray-700">Profile Image</label>
-            <input
-              type="file"
-              onChange={handleFileChange}
-              className="mt-1 w-full"
-            />
-          </div>
-
-          {/* Payment Method Details */}
-          <div className="col-span-2">
-            <h2 className="text-lg font-semibold text-[#00000080]">
-              Payment Method Details
-            </h2>
-            <p className="text-sm text-gray-500">
-              Fill payment details only if you are registering as an Auctioneer.
-            </p>
-          </div>
-
-          <select
-            name="bank"
-            value={formData.bank}
-            onChange={handleChange}
-            className="input-field"
-          >
-            <option value="">Select Your Bank</option>
-            <option value="HDFC">HDFC Bank</option>
-            <option value="SBI">SBI Bank</option>
-            <option value="ICICI">ICICI Bank</option>
-          </select>
-          <input
-            type="text"
-            name="accountNumber"
-            placeholder="Account Number"
-            value={formData.accountNumber}
-            onChange={handleChange}
-            className="input-field"
-          />
-          <input
-            type="text"
-            name="bankUserName"
-            placeholder="Bank Account Username"
-            value={formData.bankUserName}
-            onChange={handleChange}
-            className="input-field"
-          />
-          <input
-            type="text"
-            name="ifscCode"
-            placeholder="IFSC Code"
-            value={formData.ifscCode}
-            onChange={handleChange}
-            className="input-field"
-          />
-          <input
-            type="text"
-            name="upiId"
-            placeholder="UPI ID"
-            value={formData.upiId}
-            onChange={handleChange}
-            className="input-field"
-          />
-
-          {/* Submit Button */}
-          <div className="col-span-2 flex justify-center">
-            <button
-              type="submit"
-              className="bg-[#15317E] text-white px-6 py-2 rounded-md font-semibold hover:bg-[#ffffff] hover:border-[#15317E] hover:text-[#15317E] transition duration-300 border-2"
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+    <>
+      <section className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
+          <h2 className="text-2xl font-bold text-center text-blue-900 mb-6">Sign Up</h2>
+          <form className="grid grid-cols-2 gap-4" onSubmit={handleRegister}>
+            <input type="text" placeholder="Full Name" value={userName} onChange={(e) => setUserName(e.target.value)} className="p-2 border rounded" required />
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="p-2 border rounded" required />
+            <input type="number" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="p-2 border rounded" required />
+            <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} className="p-2 border rounded" required />
+            <select value={role} onChange={(e) => setRole(e.target.value)} className="p-2 border rounded col-span-1" required>
+              <option value="">Select Role</option>
+              <option value="Auctioneer">Auctioneer</option>
+              <option value="Bidder">Bidder</option>
+            </select>
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="p-2 border rounded" required />
+            <input type="file" onChange={imageHandler} className="p-2 border rounded col-span-2" />
+            {profileImagePreview && <img src={profileImagePreview} alt="Profile Preview" className="w-20 h-20 object-cover rounded-full mx-auto col-span-2" />}
+            {role === "Auctioneer" && (
+              <>
+                <input type="text" placeholder="Bank Account Holder Name" value={bankAccountHolderName} onChange={(e) => setbankAccountHolderName(e.target.value)} className="p-2 border rounded" required />
+                <input type="text" placeholder="Bank Account Number" value={bankAccountNumber} onChange={(e) => setBankAccountNumber(e.target.value)} className="p-2 border rounded" required />
+                <input type="text" placeholder="Bank Name" value={bankName} onChange={(e) => setBankName(e.target.value)} className="p-2 border rounded" required />
+                <input type="text" placeholder="IFSC Code" value={ifscCode} onChange={(e) => setifscCode(e.target.value)} className="p-2 border rounded" required />
+                <input type="text" placeholder="UPI ID" value={upiId} onChange={(e) => setupiId(e.target.value)} className="p-2 border rounded col-span-1" required />
+              </>
+            )}
+            <button type="submit" className="bg-blue-900 text-white py-2 rounded col-span-2" disabled={loading}>{loading ? "Registering..." : "Sign Up"}</button>
+          </form>
+        </div>
+      </section>
+    </>
   );
 };
 
-export default Signup;
+export default SignUp;
