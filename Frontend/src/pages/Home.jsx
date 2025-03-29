@@ -23,33 +23,25 @@ const Home = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
   return (
     <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-4 justify-center">
-        <div>
-          <p className="text-[#DECCBE] font-bold text-xl mb-8">
+      <section className="w-full ml-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-4 justify-center bg-blue-50">
+        <div className="bg-white shadow-lg rounded-xl p-8 text-center border border-blue-400">
+          <p className="text-blue-500 font-extrabold text-2xl mb-4 uppercase tracking-wide">
             Transparency Leads to Your Victory
           </p>
-          <h1
-            className={`text-[#111] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl`}
-          >
-            Transparent Auctions
-          </h1>
-          <h1
-            className={`text-[#d6482b] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl`}
-          >
-            Be The Winner
-          </h1>
-          <div className="flex gap-4 my-8">
+          <h1 className="text-blue-900 text-5xl font-extrabold mb-2">Transparent Auctions</h1>
+          <h1 className="text-blue-600 text-5xl font-extrabold mb-6">Be The Winner</h1>
+          <div className="flex gap-6 justify-center">
             {!isAuthenticated && (
               <>
                 <Link
                   to="/sign-up"
-                  className="bg-[#d6482b] font-semibold hover:bg-[#b8381e] rounded-md px-8 flex items-center py-2 text-white  transition-all duration-300"
+                  className="bg-blue-600 font-semibold hover:bg-blue-700 rounded-lg px-8 py-3 text-white transition-all duration-300 shadow-md text-lg"
                 >
                   Sign Up
                 </Link>
                 <Link
-                  to={"/login"}
-                  className="text-[#DECCBE] bg-transparent border-2 border-[#DECCBE] hover:bg-[#fff3fd] hover:text-[#fdba88] font-bold text-xl  rounded-md px-8 flex items-center py-2 transition-all duration-300"
+                  to="/login"
+                  className="text-blue-600 border-2 border-blue-600 bg-white hover:bg-blue-600 hover:text-white font-bold rounded-lg px-8 py-3 transition-all duration-300 shadow-md text-lg"
                 >
                   Login
                 </Link>
@@ -57,23 +49,21 @@ const Home = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-6">
-          <h3 className="text-[#111] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl">How it works</h3>
-          <div className="flex flex-col gap-4 md:flex-row md:flex-wrap w-full">
-            {howItWorks.map((element) => {
-              return (
-                <div
-                  key={element.title}
-                  className="bg-white flex flex-col gap-2 p-2 rounded-md h-[96px] justify-center md:w-[48%] lg:w-[47%] 2xl:w-[24%] hover:shadow-md transition-all duration-300"
-                >
-                  <h5 className="font-bold">{element.title}</h5>
-                  <p>{element.description}</p>
-                </div>
-              );
-            })}
+        <div className="flex flex-col gap-8 mt-12">
+          <h3 className="text-blue-900 text-3xl font-semibold text-center">How it works</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+            {howItWorks.map((element) => (
+              <div
+                key={element.title}
+                className="bg-white flex flex-col gap-3 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-blue-300"
+              >
+                <h5 className="font-extrabold text-xl text-blue-800">{element.title}</h5>
+                <p className="text-blue-600 text-lg">{element.description}</p>
+              </div>
+            ))}
           </div>
         </div>
-        <FeaturedAuctions/>
+        <FeaturedAuctions />
         <UpcomingAuctions />
         <Leaderboard />
       </section>
