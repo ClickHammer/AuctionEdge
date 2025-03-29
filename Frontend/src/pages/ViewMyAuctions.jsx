@@ -18,7 +18,7 @@ const ViewMyAuctions = () => {
     }
     dispatch(getMyAuctionItems());
   }, [dispatch, isAuthenticated]);
-
+ 
   return (
     <>
       <div className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col">
