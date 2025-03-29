@@ -15,7 +15,7 @@ const UpcomingAuctions = () => {
   });
 
   return (
-    <section className="my-8 p-6 bg-[#15317E] text-white rounded-lg shadow-lg">
+    <section className="my-8 p-6 bg-gray-100 border-2 border-gray-300 text-blue-900 rounded-lg shadow-lg">
       <h3 className="text-3xl font-bold text-center mb-6">Today's Auctions</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {auctionsStartingToday.length > 0 ? (
@@ -23,7 +23,7 @@ const UpcomingAuctions = () => {
             <Link
               to={`/auction/item/${auction._id}`}
               key={auction._id}
-              className="bg-white p-4 rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              className="bg-white p-4 rounded-lg shadow-md border-3 border-gray-300 hover:scale-105 transition-transform duration-300"
             >
               <div className="flex items-center gap-4">
                 <img

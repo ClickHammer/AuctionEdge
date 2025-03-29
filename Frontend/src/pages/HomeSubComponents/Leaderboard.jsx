@@ -44,7 +44,7 @@ const Leaderboard = () => {
                 </td>
                 <td className="py-3 px-6 font-semibold">{element.userName}</td>
                 <td className="py-3 px-6 font-semibold text-[#D6482B]">Rs. {element.moneySpent}</td>
-                <td className="py-3 px-6 font-semibold text-green-600">{element.auctionWon}</td>
+                <td className="py-3 px-6 font-semibold text-black">{element.auctionWon}</td>
               </tr>
             ))}
           </tbody>
@@ -52,7 +52,7 @@ const Leaderboard = () => {
       </div>
       <Link
         to="/leaderboard"
-        className="block text-center mt-5 bg-[#15317E] text-white text-lg font-bold py-3 rounded-md hover:bg-[#112A63] transition-all"
+        className="block text-center mt-5 bg-[#15317E] border-2 text-white text-lg font-bold py-3 rounded-md hover:bg-white hover:border-blue-900  hover:text-blue-900 "
       >
         View Full Leaderboard
       </Link>
