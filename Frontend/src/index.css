@@ -23,9 +23,7 @@ a {
   color: #15317E ;
   text-decoration: inherit;
 }
-a:hover {
-  color: #15317E ;
-}
+
 
 body {
   margin: 0;
@@ -51,9 +49,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #15317E ;
-}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -98,9 +94,7 @@ input {
   margin-top: 10px;
 }
 
-.button:hover {
-  background-color: #0d235b;
-}
+
 
 .link-text {
   font-size: 14px;
@@ -131,9 +125,7 @@ select, input, textarea {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
+  
   button {
     background-color: #f9f9f9;
   }
