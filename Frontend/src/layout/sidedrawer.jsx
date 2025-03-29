@@ -10,6 +10,7 @@ import { IoMdCloseCircleOutline, IoIosCreate } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/slices/UserSlice.js";
 import { Link } from "react-router-dom";
+import Logo from "../assets/logo.svg"; 
 
 const SideDrawer = () => {
   const [show, setShow] = useState(false);
@@ -22,7 +23,7 @@ const SideDrawer = () => {
 
   return (
     <>
-      {/* Hamburger Icon */}
+    
       <div
         onClick={() => setShow(!show)}
         className="fixed right-5 top-5 bg-[#15317E] text-white text-3xl p-2 rounded-md lg:hidden"
@@ -30,173 +31,142 @@ const SideDrawer = () => {
         <GiHamburgerMenu />
       </div>
 
-      {/* Side Drawer */}
       <div
-        className={`w-[100%] sm:w-[300px] bg-white h-full fixed top-0 ${
+        className={`w-[300px] bg-white h-full fixed top-0 ${
           show ? "left-0" : "left-[-100%]"
         } transition-all duration-200 p-4 flex flex-col justify-between lg:left-0 border-r-[1px] border-gray-300`}
       >
-        <div className="relative">
-          <Link to={"/"}>
-            <h4 className="text-2xl font-semibold mb-4">
-              <span className="text-[#15317E]">AuctionEdge</span>
-            </h4>
-          </Link>
+      
+        <div className="flex flex-col items-center gap-1 p-4">
+          <img src={Logo} alt="AuctionEdge Logo" className="w-16 h-16 fill-current" />
+          <h4 className="text-2xl font-bold tracking-wide uppercase text-[#15317E]">
+            Auction<span className="text-[#7D6115]">Edge</span>
+          </h4>
+        </div>
 
-          <ul className="flex flex-col gap-3">
-            <li>
-              <Link
-                to={"/auctions"}
-                className="flex text-xl font-semibold gap-2 items-center hover:text-[#7D6115] transition duration-150"
-              >
-                <RiAuctionFill /> Auctions
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"/leaderboard"}
-                className="flex text-xl font-semibold gap-2 items-center hover:text-[#7D6115] transition duration-150"
-              >
-                <MdLeaderboard /> Leaderboard
-              </Link>
-            </li>
+        <ul className="flex flex-col gap-4 text-lg font-semibold text-gray-800">
+          <li>
+            <Link to={"/auctions"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+              <RiAuctionFill /> Auctions
+            </Link>
+          </li>
+          <li>
+            <Link to={"/leaderboard"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+              <MdLeaderboard /> Leaderboard
+            </Link>
+          </li>
 
-            {isAuthenticated && user && user.role === "Auctioneer" && (
-              <>
-                <li>
-                  <Link
-                    to={"/submit-commission"}
-                    className="flex text-xl font-semibold gap-2 items-center hover:text-[ #7D6115] transition duration-150"
-                  >
-                    <FaFileInvoiceDollar /> Submit Commission
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to={"/create-auction"}
-                    className="flex text-xl font-semibold gap-2 items-center hover:text-[ #7D6115] transition duration-150"
-                  >
-                    <IoIosCreate /> Create Auction
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to={"/view-my-auctions"}
-                    className="flex text-xl font-semibold gap-2 items-center hover:text-[ #7D6115] transition duration-150"
-                  >
-                    <FaEye /> View My Auctions
-                  </Link>
-                </li>
-              </>
-            )}
-
-            {isAuthenticated && user && user.role === "Super Admin" && (
+          {isAuthenticated && user?.role === "Auctioneer" && (
+            <>
               <li>
-                <Link
-                  to={"/dashboard"}
-                  className="flex text-xl font-semibold gap-2 items-center hover:text-[ #7D6115] transition duration-150"
-                >
-                  <MdDashboard /> Dashboard
+                <Link to={"/submit-commission"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+                  <FaFileInvoiceDollar /> Submit Commission
                 </Link>
               </li>
-            )}
-          </ul>
+              <li>
+                <Link to={"/create-auction"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+                  <IoIosCreate /> Create Auction
+                </Link>
+              </li>
+              <li>
+                <Link to={"/view-my-auctions"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+                  <FaEye /> View My Auctions
+                </Link>
+              </li>
+            </>
+          )}
 
+          {isAuthenticated && user?.role === "Super Admin" && (
+            <li>
+              <Link to={"/dashboard"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+                <MdDashboard /> Dashboard
+              </Link>
+            </li>
+          )}
+        </ul>
+
+        <div className="flex flex-col items-center gap-2 my-2">
           {!isAuthenticated ? (
-            <div className="my-4 flex gap-2">
-              <Link
+            <>
+        <Link
   to={"/sign-up"}
-  className="bg-[#15317E] border-2 border-transparent font-semibold text-xl py-1 px-4 rounded-md text-white 
-             hover:bg-white hover:border-[#15317E] hover:text-[#15317E] transition duration-200"
+  className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
+  hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
 >
   Sign Up
 </Link>
-<Link
-  to={"/login"}
-  className="border-2 border-[#15317E] text-[#15317E] font-semibold text-xl py-1 px-4 rounded-md 
-             hover:bg-[#15317E] hover:text-white transition duration-200"
->
-  Login
-</Link>
 
-            </div>
+              <Link
+                to={"/login"}
+                className="w-full text-center border-2 border-[#15317E] text-[#15317E] py-2 rounded-md hover:bg-[#15317E] hover:text-white transition"
+              >
+                Login
+              </Link>
+            </>
           ) : (
-            <div className="my-4 flex gap-4 w-fit" onClick={handleLogout}>
-              <button className="bg-[#15317E] font-semibold text-xl py-1 px-4 rounded-md text-white hover:bg-[#E67E22] transition duration-200">
-                Logout
-              </button>
-            </div>
+            <button
+  onClick={handleLogout}
+  className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
+  hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
+>
+  Logout
+</button>
+
           )}
-
-          <hr className="mb-4 border-t-[#15317E]" />
-
-          <ul className="flex flex-col gap-3">
-            {isAuthenticated && (
-              <li>
-                <Link
-                  to={"/me"}
-                  className="flex text-xl font-semibold gap-2 items-center hover:text-[#7D6115] transition duration-150"
-                >
-                  <FaUserCircle /> Profile
-                </Link>
-              </li>
-            )}
-            <li>
-              <Link
-                to={"/how-it-works-info"}
-                className="flex text-xl font-semibold gap-2 items-center hover:text-[#7D6115] transition duration-150"
-              >
-                <SiGooglesearchconsole /> How it works
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"/about"}
-                className="flex text-xl font-semibold gap-2 items-center hover:text-[#7D6115] transition duration-150"
-              >
-                <BsFillInfoSquareFill /> About Us
-              </Link>
-            </li>
-          </ul>
-
-          <IoMdCloseCircleOutline
-            onClick={() => setShow(!show)}
-            className="absolute top-0 right-4 text-[28px] sm:hidden text-gray-500 hover:text-[#7D6115]"
-          />
         </div>
 
-        <div>
-          <div className="flex gap-2 items-center mb-2">
-            <Link
-              to="/"
-              className="bg-white text-gray-500 p-2 text-xl rounded-sm hover:text-blue-700"
-            >
-              <FaFacebook />
+        <hr className="border-t-[#15317E] mb-4" />
+
+        
+        <ul className="flex flex-col gap-3 text-lg font-semibold text-gray-800">
+          {isAuthenticated && (
+            <li>
+              <Link to={"/me"} className="flex items-center gap-3 hover:text-[#7D6115] transition">
+                <FaUserCircle /> Profile
+              </Link>
+            </li>
+          )}
+          <li>
+            <Link to={"/how-it-works-info"} className="flex items-center gap-3 hover:text-[#7D6115] transition">
+              <SiGooglesearchconsole /> How it works
             </Link>
-            <Link
-              to="/"
-              className="bg-white text-gray-500 p-2 text-xl rounded-sm hover:text-pink-500"
-            >
-              <RiInstagramFill />
+          </li>
+          <li>
+            <Link to={"/about"} className="flex items-center gap-3 hover:text-[#7D6115] transition">
+              <BsFillInfoSquareFill /> About Us
             </Link>
-          </div>
-          <Link
-            to={"/contact"}
-            className="text-gray-500 font-semibold hover:text- [#7D6115] transition duration-150"
-          >
-            Contact Us
-          </Link>
-          <p className="text-gray-500">&copy; AuctionEdge, LLC.</p>
-          <p className="text-gray-500">
-            Designed By{" "}
-            <Link
-              to={"/"}
-              className="font-semibold hover:text-[#7D6115] transition duration-150"
-            >
-              AuctionEdge & Team
-            </Link>
-          </p>
-        </div>
+          </li>
+        </ul>
+
+        <div className="flex flex-col items-left mt-6 text-sm">
+  <div className="flex  items-left gap-2">
+    <Link to="/" className="text-gray-500 text-xl hover:text-blue-700">
+      <FaFacebook />
+    </Link>
+    <Link to="/" className="text-gray-500 text-xl hover:text-pink-500">
+      <RiInstagramFill />
+    </Link>
+  </div>
+
+  <Link to={"/contact"} className="mt-2 text-[#15317E] font-semibold hover:text-[#7D6115] transition">
+    Contact Us
+  </Link>
+
+  <p className="text-gray-500 mt-1 text-xs">&copy; AuctionEdge, LLC.</p>
+  <p className="text-gray-500 text-xs">
+    Designed By{" "}
+    <Link to={"/"} className="font-semibold hover:text-[#7D6115] transition">
+      AuctionEdge & Team
+    </Link>
+  </p>
+</div>
+
+
+       
+        <IoMdCloseCircleOutline
+          onClick={() => setShow(!show)}
+          className="absolute top-4 right-4 text-3xl sm:hidden text-gray-500 hover:text-[#7D6115] cursor-pointer"
+        />
       </div>
     </>
   );
