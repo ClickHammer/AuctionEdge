@@ -7,19 +7,19 @@ const Leaderboard = () => {
 
   return (
     <>
-      {/* Sidebar-Responsive Layout */}
+   
       <section className="w-full min-h-screen bg-[#F8F9FA] flex">
         {/* Sidebar Offset */}
-        <div className="hidden lg:block lg:w-[280px]"></div> {/* Adjust width based on sidebar */}
+        <div className="hidden lg:block lg:w-[280px]"></div>
         
-        {/* Main Leaderboard Content */}
+       
         <div className="flex-1 p-6">
           <div className="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
             {loading ? (
               <Spinner />
             ) : (
               <>
-                {/* Leaderboard Title */}
+               
                 <div className="text-center mb-6">
                   <h1 className="text-[#1E3A8A] text-5xl font-bold">
                     Bidders Leaderboard

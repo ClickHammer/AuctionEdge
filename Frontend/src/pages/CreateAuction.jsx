@@ -65,15 +65,15 @@ const CreateAuction = () => {
   }, [isAuthenticated]);
 
   return (
-    <article className="w-full px-5 pt-20 lg:pl-[320px] flex flex-col items-center">
-      <h1 className="text-[#d6482b] text-4xl font-bold mb-6 text-center">Create Auction</h1>
+    <article className="w-full px-5 pt-20 lg:pl-[320px] flex flex-col items-center bg-gray-100">
+      <h1 className="text-blue-900 text-4xl font-bold mb-6 text-center transition hover:text-blue-700">Create Auction</h1>
       <div className="bg-white w-full max-w-3xl px-8 py-6 shadow-xl rounded-xl">
         <form className="flex flex-col gap-6" onSubmit={handleCreateAuction}>
-          <p className="font-semibold text-2xl">Auction Details</p>
+          <p className="font-semibold text-2xl text-blue-900">Auction Details</p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} className="input-field" />
-            <select value={category} onChange={(e) => setCategory(e.target.value)} className="input-field">
+            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} className="input-field hover:border-blue-900" />
+            <select value={category} onChange={(e) => setCategory(e.target.value)} className="input-field hover:border-blue-900">
               <option value="">Select Category</option>
               {auctionCategories.map((element) => (
                 <option key={element} value={element}>{element}</option>
@@ -81,28 +81,30 @@ const CreateAuction = () => {
             </select>
           </div>
 
-          <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-field" rows={4} />
+          <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-field hover:border-blue-900" rows={4} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <select value={condition} onChange={(e) => setCondition(e.target.value)} className="input-field">
+            <select value={condition} onChange={(e) => setCondition(e.target.value)} className="input-field hover:border-blue-900">
               <option value="">Select Condition</option>
               <option value="New">New</option>
               <option value="Used">Used</option>
             </select>
-            <input type="number" placeholder="Starting Bid" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} className="input-field" />
+            <input type="number" placeholder="Starting Bid" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} className="input-field hover:border-blue-900" />
           </div>
 
+       
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <DatePicker selected={startTime} onChange={(date) => setStartTime(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" className="input-field" />
-            <DatePicker selected={endTime} onChange={(date) => setEndTime(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" className="input-field" />
+            <DatePicker selected={startTime} onChange={(date) => setStartTime(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" className="input-field hover:border-blue-900" placeholderText="Starting Date" />
+            <DatePicker selected={endTime} onChange={(date) => setEndTime(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" className="input-field hover:border-blue-900" placeholderText="Ending Date" />
+          </div>
+          
+
+          <div className="border-2 border-dashed border-gray-400 p-6 rounded-md flex flex-col items-center hover:border-blue-900 transition">
+            {imagePreview ? <img src={imagePreview} alt="Auction Item" className="w-32 h-32 object-cover rounded-md shadow-md" /> : <p className="text-gray-500">Upload Image Of Item</p>}
+            <input type="file" className="mt-3 cursor-pointer bg-blue-900 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition" onChange={imageHandler} />
           </div>
 
-          <div className="border-2 border-dashed border-gray-400 p-6 rounded-md flex flex-col items-center">
-            {imagePreview ? <img src={imagePreview} alt="Auction Item" className="w-32 h-32 object-cover" /> : <p className="text-gray-500">Upload Image</p>}
-            <input type="file" className="" onChange={imageHandler} />
-          </div>
-
-          <button className="bg-[#D6482B] text-lg font-semibold py-3 rounded-md text-white w-full hover:bg-[#b8381e] transition">
+          <button className="bg-blue-900 text-lg font-semibold py-3 rounded-md text-white w-full hover:bg-blue-700 transition">
             {loading ? "Creating Auction..." : "Create Auction"}
           </button>
         </form>
