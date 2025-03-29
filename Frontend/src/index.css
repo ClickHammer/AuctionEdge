@@ -20,11 +20,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #15317E ;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #15317E ;
 }
 
 body {
@@ -52,12 +52,79 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #15317E ;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+input {
+  background-color: white !important;
+  color: black !important;
+}
+.form-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.input-field::placeholder {
+  color: black; 
+  opacity: 1;
+}
+
+.button {
+  background-color: #15317E;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #0d235b;
+}
+
+.link-text {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.link-text a {
+  color: #15317E;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-text a:hover {
+  text-decoration: underline;
+}
+
+select, input, textarea {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
