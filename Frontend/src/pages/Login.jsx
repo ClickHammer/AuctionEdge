@@ -28,38 +28,50 @@ const Login = () => {
 
   return (
     <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-4 justify-center">
-        <div className="bg-white mx-auto w-full h-auto px-2 flex flex-col gap-4 items-center py-4 justify-center rounded-md sm:w-[600px] sm:h-[450px]">
-          <h1
-            className={`text-[#d6482b] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl`}
-          >
-            Login
-          </h1>
-          <form onSubmit={handleLogin} className="flex flex-col gap-5 w-full">
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-stone-500">Email</label>
+      <section className="w-full min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white shadow-lg rounded-lg px-8 py-6 sm:w-[450px]">
+          {}
+          <h1 className="text-[#15317E] text-center text-4xl font-bold mb-6">Login</h1>
+
+          {}
+          <form onSubmit={handleLogin} className="flex flex-col gap-6">
+            {}
+            <div className="flex flex-col">
+              <label className="text-lg font-medium text-gray-700">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:border-[#15317E] focus:ring-[#15317E] focus:ring-1 outline-none transition duration-200"
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-[16px] text-stone-500">Password</label>
+
+            {}
+            <div className="flex flex-col">
+              <label className="text-lg font-medium text-gray-700">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none"
+                className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:border-[#15317E] focus:ring-[#15317E] focus:ring-1 outline-none transition duration-200"
               />
             </div>
+
+            {}
             <button
-              className="bg-[#d6482b] font-semibold hover:bg-[#b8381e] transition-all duration-300 text-xl py-2 px-4 rounded-md text-white mx-auto my-4"
+              className="bg-[#15317E] text-white font-semibold text-lg py-3 rounded-md hover:bg-white hover:text-[#15317E] hover:border-[#15317E] border transition-all duration-300"
               type="submit"
             >
               {loading ? "Logging In..." : "Login"}
             </button>
+
+            {}
+            <p className="text-center text-gray-600 text-sm">
+              Don't have an account?{" "}
+              <a href="/sign-up" className="text-[#15317E] font-semibold hover:underline">
+                Sign Up
+              </a>
+            </p>
           </form>
         </div>
       </section>
