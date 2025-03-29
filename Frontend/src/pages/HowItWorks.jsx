@@ -49,43 +49,28 @@ const HowItWorks = () => {
   ];
 
   return (
-    <>
-  <section className="w-full ml-0 m-0 h-fit px-12 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-6 justify-center ">
-  <h1
-  className="bg-gradient-to-r from-[#d6482b]  to-[#ff8c42] bg-clip-text text-transparent text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-6xl py-2"
->
- How AuctionEdge Operates
-</h1>
+    <section className="w-full px-6 pt-16 lg:pl-[320px] flex flex-col min-h-screen py-6 bg-gray-50 text-black">
+      <h1 className="text-gray-800 text-4xl font-bold mb-6 text-center">
+        How AuctionEdge Operates
+      </h1>
 
-
-  
-
-  <div className="flex flex-col gap-9 my-7">
-    {steps.map((element, index) => {
-      return (
-        <div
-          key={index}
-          className="bg-white rounded-md p-10 lg:p-5 flex flex-col gap-2 group shadow-lg"
-        >
-          <div className="bg-black text-white p-3 text-xl rounded-full w-fit group-hover:bg-[#D6482B] transition-all duration-300">
-            {element.icon}
-          </div>
-          <h3
-            className="text-[#D6482B] text-lg font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-2xl group-hover:text-[#000000] transition-all duration-300"
+      <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+        {steps.map((element, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-xl p-6 flex flex-col gap-4 shadow-md border-l-8 border-[#15317E] transition-all duration-300 hover:shadow-lg"
           >
-            {element.title}
-          </h3>
-          <p className="text-lg text-gray-700 group-hover:text-[#D6482B] transition-all duration-300">
-            {element.description}
-          </p>
-        </div>
-      );
-    })}
-  </div>
-</section>
-
-
-    </>
+            <div className="bg-[#15317E] text-white p-4 text-2xl rounded-full w-fit shadow-sm transition-colors duration-300 hover:bg-[#7D6115]">
+              {element.icon}
+            </div>
+            <h3 className="text-[#15317E] text-xl font-bold transition-colors duration-300 hover:text-[#7D6115]">
+              {element.title}
+            </h3>
+            <p className="text-gray-700">{element.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
