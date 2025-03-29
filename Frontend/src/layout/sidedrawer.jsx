@@ -36,13 +36,14 @@ const SideDrawer = () => {
           show ? "left-0" : "left-[-100%]"
         } transition-all duration-200 p-4 flex flex-col justify-between lg:left-0 border-r-[1px] border-gray-300`}
       >
-      
+      <Link to="/">
         <div className="flex flex-col items-center gap-1 p-4">
           <img src={Logo} alt="AuctionEdge Logo" className="w-16 h-16 fill-current" />
           <h4 className="text-2xl font-bold tracking-wide uppercase text-[#15317E]">
             Auction<span className="text-[#7D6115]">Edge</span>
           </h4>
         </div>
+      </Link>
 
         <ul className="flex flex-col gap-4 text-lg font-semibold text-gray-800">
           <li>
@@ -160,9 +161,6 @@ const SideDrawer = () => {
     </Link>
   </p>
 </div>
-
-
-       
         <IoMdCloseCircleOutline
           onClick={() => setShow(!show)}
           className="absolute top-4 right-4 text-3xl sm:hidden text-gray-500 hover:text-[#7D6115] cursor-pointer"

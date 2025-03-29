@@ -4,60 +4,67 @@ import { useSelector } from "react-redux";
 
 const Leaderboard = () => {
   const { loading, leaderboard } = useSelector((state) => state.user);
+
   return (
     <>
-      <section className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col">
-        {loading ? (
-          <Spinner />
-        ) : (
-          <>
-            <div className="flex flex-col min-[340px]:flex-row min-[340px]:gap-2 mb-5">
-              <h1
-                className={`text-[#D6482B] text-2xl font-bold mb-2 min-[480px]:text-4xl md:text-6xl xl:text-7xl 2xl:text-8xl`}
-              >
-                Bidders Leaderboard
-              </h1>
+      {/* Sidebar-Responsive Layout */}
+      <section className="w-full min-h-screen bg-[#F8F9FA] flex">
+        {/* Sidebar Offset */}
+        <div className="hidden lg:block lg:w-[280px]"></div> {/* Adjust width based on sidebar */}
+        
+        {/* Main Leaderboard Content */}
+        <div className="flex-1 p-6">
+          <div className="w-full max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+            {loading ? (
+              <Spinner />
+            ) : (
+              <>
+                {/* Leaderboard Title */}
+                <div className="text-center mb-6">
+                  <h1 className="text-[#1E3A8A] text-5xl font-bold">
+                    Bidders Leaderboard
+                  </h1>
+                </div>
+                <div className="overflow-x-auto">
+  <table className="w-full bg-white border border-gray-300 shadow-md rounded-lg border-collapse">
+    <thead>
+      <tr className="bg-[#1E3A8A] text-white text-left">
+        <th className="py-4 px-6 w-20">Rank</th>
+        <th className="py-4 px-6 w-28">Profile</th>
+        <th className="py-4 px-6 w-1/4">Username</th>
+        <th className="py-4 px-6 w-1/4">Bid Expenditure</th>
+        <th className="py-4 px-6 w-1/4">Auctions Won</th>
+      </tr>
+    </thead>
+    <tbody className="text-gray-700">
+      {leaderboard.slice(0, 100).map((element, index) => (
+        <tr key={element._id} className="border-b border-gray-300 hover:bg-gray-100 transition-all">
+          <td className="py-4 px-6">
+            <div className={`w-8 h-8 flex items-center justify-center rounded-full text-white font-semibold
+              ${index === 0 ? "bg-yellow-400" : index === 1 ? "bg-gray-400" : "bg-gray-200"}`}>
+              {index + 1}
             </div>
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border my-5 border-gray-300">
-                <thead>
-                  <tr>
-                    <th className="py-2 px-4 text-left">Profile Pic</th>
-                    <th className="py-2 px-4 text-left">Username</th>
-                    <th className="py-2 px-4 text-left">Bid Expenditure</th>
-                    <th className="py-2 px-4 text-left">Auctions Won</th>
-                  </tr>
-                </thead>
-                <tbody className="text-gray-700">
-                  {leaderboard.slice(0, 100).map((element, index) => {
-                    return (
-                      <tr
-                        key={element._id}
-                        className="border-b border-gray-300"
-                      >
-                        <td className="flex gap-2 items-center py-2 px-4">
-                          <span className="text-stone-400 font-semibold text-xl w-7 hidden sm:block">
-                            {index + 1}
-                          </span>
-                          <span>
-                            <img
-                              src={element.profileImage?.url}
-                              alt={element.username}
-                              className="h-12 w-12 object-cover rounded-full"
-                            />
-                          </span>
-                        </td>
-                        <td className="py-2 px-4">{element.userName}</td>
-                        <td className="py-2 px-4">{element.moneySpent}</td>
-                        <td className="py-2 px-4">{element.auctionsWon}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
+          </td>
+          <td className="py-4 px-6">
+            <img
+              src={element.profileImage?.url}
+              alt={element.userName}
+              className="h-12 w-12 object-cover rounded-full border-2 border-[#1E3A8A]"
+            />
+          </td>
+          <td className="py-4 px-6 font-medium">{element.userName}</td>
+          <td className="py-4 px-6 font-semibold text-[#1E3A8A]">{element.moneySpent}</td>
+          <td className="py-4 px-6 font-semibold">{element.auctionWon}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+              </>
+            )}
+          </div>
+        </div>
       </section>
     </>
   );
