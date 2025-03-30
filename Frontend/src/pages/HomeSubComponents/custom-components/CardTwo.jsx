@@ -115,8 +115,9 @@ const Drawer = ({ setOpenDrawer, openDrawer, id }) => {
         openDrawer && id ? "translate-x-0" : "translate-x-full"
       } flex flex-col p-5`}
     >
-      <div className="flex justify-between items-center border-b pb-3">
-        <h3 className="text-xl font-semibold text-gray-800">Republish Auction</h3>
+      <div className="flex justify-between items-center border-b pb-3 mt-16">
+        <h3 className="text-xl font-semibold text-gray-800 ">Republish Auction</h3>
+        
         <button
           onClick={() => setOpenDrawer(false)}
           className="text-gray-500 hover:text-red-500 transition-all"
