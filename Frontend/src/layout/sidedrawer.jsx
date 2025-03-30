@@ -23,27 +23,26 @@ const SideDrawer = () => {
 
   return (
     <>
-    
       <div
         onClick={() => setShow(!show)}
-        className="fixed right-5 top-5 bg-[#15317E] text-white text-3xl p-2 rounded-md lg:hidden"
+        className="fixed right-5 top-5 bg-[#15317E] text-white text-3xl p-2 rounded-md lg:hidden z-50"
       >
         <GiHamburgerMenu />
       </div>
 
       <div
-        className={`w-[300px] bg-white h-full fixed top-0 ${
+        className={`w-[300px] bg-white h-full fixed top-0 z-50 ${
           show ? "left-0" : "left-[-100%]"
         } transition-all duration-200 p-4 flex flex-col justify-between lg:left-0 border-r-[1px] border-gray-300`}
       >
-      <Link to="/">
-        <div className="flex flex-col items-center gap-1 p-4">
-          <img src={Logo} alt="AuctionEdge Logo" className="w-16 h-16 fill-current" />
-          <h4 className="text-2xl font-bold tracking-wide uppercase text-[#15317E]">
-            Auction<span className="text-[#7D6115]">Edge</span>
-          </h4>
-        </div>
-      </Link>
+        <Link to="/">
+          <div className="flex flex-col items-center gap-1 p-4">
+            <img src={Logo} alt="AuctionEdge Logo" className="w-16 h-16 fill-current" />
+            <h4 className="text-2xl font-bold tracking-wide uppercase text-[#15317E]">
+              Auction<span className="text-[#7D6115]">Edge</span>
+            </h4>
+          </div>
+        </Link>
 
         <ul className="flex flex-col gap-4 text-lg font-semibold text-gray-800">
           <li>
@@ -89,13 +88,13 @@ const SideDrawer = () => {
         <div className="flex flex-col items-center gap-2 my-2">
           {!isAuthenticated ? (
             <>
-        <Link
-  to={"/sign-up"}
-  className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
-  hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
->
-  Sign Up
-</Link>
+              <Link
+                to={"/sign-up"}
+                className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
+                hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
+              >
+                Sign Up
+              </Link>
 
               <Link
                 to={"/login"}
@@ -106,19 +105,17 @@ const SideDrawer = () => {
             </>
           ) : (
             <button
-  onClick={handleLogout}
-  className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
-  hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
->
-  Logout
-</button>
-
+              onClick={handleLogout}
+              className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
+              hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
+            >
+              Logout
+            </button>
           )}
         </div>
 
         <hr className="border-t-[#15317E] mb-4" />
 
-        
         <ul className="flex flex-col gap-3 text-lg font-semibold text-gray-800">
           {isAuthenticated && (
             <li>
@@ -140,30 +137,31 @@ const SideDrawer = () => {
         </ul>
 
         <div className="flex flex-col items-left mt-6 text-sm">
-  <div className="flex  items-left gap-2">
-    <Link to="/" className="text-gray-500 text-xl hover:text-blue-700">
-      <FaFacebook />
-    </Link>
-    <Link to="/" className="text-gray-500 text-xl hover:text-pink-500">
-      <RiInstagramFill />
-    </Link>
-  </div>
+          <div className="flex items-left gap-2">
+            <Link to="/" className="text-gray-500 text-xl hover:text-blue-700">
+              <FaFacebook />
+            </Link>
+            <Link to="/" className="text-gray-500 text-xl hover:text-pink-500">
+              <RiInstagramFill />
+            </Link>
+          </div>
 
-  <Link to={"/contact"} className="mt-2 text-[#15317E] font-semibold hover:text-[#7D6115] transition">
-    Contact Us
-  </Link>
+          <Link to={"/contact"} className="mt-2 text-[#15317E] font-semibold hover:text-[#7D6115] transition">
+            Contact Us
+          </Link>
 
-  <p className="text-gray-500 mt-1 text-xs">&copy; AuctionEdge, LLC.</p>
-  <p className="text-gray-500 text-xs">
-    Designed By{" "}
-    <Link to={"/"} className="font-semibold hover:text-[#7D6115] transition">
-      AuctionEdge & Team
-    </Link>
-  </p>
-</div>
+          <p className="text-gray-500 mt-1 text-xs">&copy; AuctionEdge, LLC.</p>
+          <p className="text-gray-500 text-xs">
+            Designed By{" "}
+            <Link to={"/"} className="font-semibold hover:text-[#7D6115] transition">
+              AuctionEdge & Team
+            </Link>
+          </p>
+        </div>
+
         <IoMdCloseCircleOutline
           onClick={() => setShow(!show)}
-          className="absolute top-4 right-4 text-3xl sm:hidden text-gray-500 hover:text-[#7D6115] cursor-pointer"
+          className="absolute top-4 right-4 text-3xl sm:hidden text-gray-500 hover:text-[#7D6115] cursor-pointer z-50"
         />
       </div>
     </>
