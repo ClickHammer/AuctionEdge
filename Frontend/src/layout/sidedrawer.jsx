@@ -59,8 +59,8 @@ const SideDrawer = () => {
           {isAuthenticated && user?.role === "Auctioneer" && (
             <>
               <li>
-                <Link to={"/submit-commission"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
-                  <FaFileInvoiceDollar /> Submit Commission
+                <Link to={"/pay-commission"} className="flex items-center gap-1 hover:text-[#7D6115] transition">
+                  <FaFileInvoiceDollar /> Pay Commission
                 </Link>
               </li>
               <li>

@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   clearAllSuperAdminSliceErrors,
-  getAllPaymentProofs,
   getAllUsers,
   getMonthlyRevenue,
 } from "@/store/slices/superAdminSlice";
 import AuctionItemDelete from "./sub-components/AuctionItemDelete";
 import BiddersAuctioneersGraph from "./sub-components/BiddersAuctioneersGraph";
 import PaymentGraph from "./sub-components/PaymentGraph";
-import PaymentProofs from "./sub-components/PaymentProofs";
 import Spinner from "/src/Pages/HomeSubComponents/custom-components/Spinner.jsx";
 
 const Dashboard = () => {
@@ -22,7 +20,6 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getMonthlyRevenue());
     dispatch(getAllUsers());
-    dispatch(getAllPaymentProofs());
     dispatch(clearAllSuperAdminSliceErrors());
   }, []);
 
@@ -53,12 +50,6 @@ const Dashboard = () => {
                 Users
               </h3>
               <BiddersAuctioneersGraph />
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg col-span-1 md:col-span-2">
-              <h3 className="text-xl font-semibold text-blue-800 mb-4">
-                Payment Proofs
-              </h3>
-              <PaymentProofs />
             </div>
             <div className="bg-white p-6 rounded-lg shadow-lg col-span-1 md:col-span-2">
               <h3 className="text-xl font-semibold text-blue-800 mb-4">
