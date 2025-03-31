@@ -18,31 +18,41 @@ export const endedAuctionCron = () => {
       try {
         const commissionAmount = await calculateCommission(auction._id);
         auction.commissionCalculated = true;
+        const auctionId = await Auction.findById(auction._id).select("createdBy");
+        const userID=auctionId.createdBy;
+        await User.updateOne({ _id: userID }, { $inc: { unpaidCommission: commissionAmount } });
+        console.log(commissionAmount)
+
+
+        
+
         const highestBidder = await Bid.findOne({
           auctionItem: auction._id,
           amount: auction.currentBid,
         });
-        const auctioneer = await User.findById(auction.createdBy);
-        // auctioneer.unpaidCommission = commissionAmount;
+       const auctioneer = await User.findById(auction.createdBy);
+       // // auctioneer.unpaidCommission = commissionAmount;
         
         if (highestBidder) {
           
           auction.highestBidder = highestBidder.bidder.id;
           await auction.save();
           const bidder = await User.findById(highestBidder.bidder.id);
-          await User.findByIdAndUpdate(
-            bidder._id,
+          // await User.updateOne({ _id: userID }, { $inc: { unpaidCommission: commissionAmount } });
+          await User.updateOne
+            ({ _id: bidder.id },
             {
               $inc: {
                 auctionWon: 1,
+                moneySpent:auction.currentBid,
               },
             },
             { new: true }
           );
-          await User.findByIdAndUpdate(
-            auctioneer._id,
-            { new: true }
-          );
+          // await User.findByIdAndUpdate(
+          //   auctioneer._id,
+          //   { new: true }
+          // );
           let subject = `Congratulations! You won the auction for ${auction.title}`;
           
           let message =  `Subject: 🎉 Congratulations! You Won the Auction for ${auction.title}  
