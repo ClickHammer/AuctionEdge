@@ -11,7 +11,8 @@ import auctionItemRouter from "./router/auctionItemRoutes.js"
 import superAdminRouter from "./router/superAdminRoutes.js";
 import bidRouter from "./router/bidRoutes.js";
 import { endedAuctionCron } from "./automation/endedAuctionCron.js";
-import { verifyCommissionCron } from "./automation/verifyComissionCrone.js";
+import payment from "./router/paymentRouter.js"
+// import { verifyCommissionCron } from "./automation/verifyComissionCrone.js";
 const app=express()
 config({
   path: "./config/.env",
@@ -33,12 +34,12 @@ app.use(fileUpload({
 }));
 app.use("/api/v1/user",userRouter);
 app.use("/api/v1/auctionitem",auctionItemRouter);
-app.use("/api/v1/commission", commissionRouter);
 app.use("/api/v1/bid",bidRouter);
 app.use("/api/v1/superadmin", superAdminRouter);
+app.use("/api/payment",payment);
+app.use("/api/user",commissionRouter);
 
 endedAuctionCron();
-verifyCommissionCron();
 connectDB();
 
 app.use(errorMiddleware);

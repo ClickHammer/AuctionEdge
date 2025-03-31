@@ -13,7 +13,6 @@ export const endedAuctionCron = () => {
       commissionCalculated: false
     });
     
-    console.log(endedAuctions);
     for (const auction of endedAuctions) {
       try {
         const commissionAmount = await calculateCommission(auction._id);
@@ -31,14 +30,14 @@ export const endedAuctionCron = () => {
           amount: auction.currentBid,
         });
        const auctioneer = await User.findById(auction.createdBy);
-       // // auctioneer.unpaidCommission = commissionAmount;
+
         
         if (highestBidder) {
           
           auction.highestBidder = highestBidder.bidder.id;
           await auction.save();
           const bidder = await User.findById(highestBidder.bidder.id);
-          // await User.updateOne({ _id: userID }, { $inc: { unpaidCommission: commissionAmount } });
+
           await User.updateOne
             ({ _id: bidder.id },
             {
@@ -49,10 +48,6 @@ export const endedAuctionCron = () => {
             },
             { new: true }
           );
-          // await User.findByIdAndUpdate(
-          //   auctioneer._id,
-          //   { new: true }
-          // );
           let subject = `Congratulations! You won the auction for ${auction.title}`;
           
           let message =  `Subject: 🎉 Congratulations! You Won the Auction for ${auction.title}  

@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Leaderboard from "./pages/Leaderboard";
 import "react-toastify/dist/ReactToastify.css";
 import Login from './pages/Login';
-import SubmitCommission from "./pages/SubmitCommission";
+import PayCommission from "./pages/PayCommission";
 import { useDispatch } from 'react-redux';
 import { fetchLeaderboard, fetchUser } from './store/slices/UserSlice';
 import HowItWorks from './pages/HowItWorks';
@@ -38,7 +38,7 @@ const App = () => {
       <Route path='/' element={<Home/>} />
       <Route path="/sign-up" element={<SignUp/>} />
       <Route path="/login" element={<Login />} />
-      <Route path="/submit-commission" element={<SubmitCommission />} />
+      <Route path="/pay-commission" element={<PayCommission />} />
       <Route path="/how-it-works-info" element={<HowItWorks />} />
       <Route path="/about" element={<About />} />
       <Route path="/leaderboard" element={<Leaderboard />} />

@@ -1,9 +1,8 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js"
 import ErrorHandler from "../middlewares/error.js"
-import { Commission } from "../models/commissionSchema.model.js"
 import { User } from "../models/UserSchema.model.js"
 import { Auction } from "../models/AuctionSchema.model.js"
-import { PaymentProof } from "../models/commissionProofSchema.js"
+import { Payment } from "../models/Payment.model.js"
 import mongoose from "mongoose"
 
 export const deleteAuctionItem = catchAsyncErrors(async (req, res, next) => {
@@ -19,63 +18,6 @@ export const deleteAuctionItem = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Auction item deleted successfully.",
-    });
-  });
-  
-  export const getAllPaymentProofs = catchAsyncErrors(async (req, res, next) => {
-    let paymentProofs = await PaymentProof.find();
-    res.status(200).json({
-      success: true,
-      paymentProofs,
-    });
-  });
-  
-  export const getPaymentProofDetail = catchAsyncErrors(async (req, res, next) => {
-      const { id } = req.params;
-      const paymentProofDetail = await PaymentProof.findById(id);
-      res.status(200).json({
-        success: true,
-        paymentProofDetail,
-      });
-    }
-  );
-  
-  export const updateProofStatus = catchAsyncErrors(async (req, res, next) => {
-    const { id } = req.params;
-    const { amount, status } = req.body;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return next(new ErrorHandler("Invalid ID format.", 400));
-    }
-    let proof = await PaymentProof.findById(id);
-    if (!proof) {
-      return next(new ErrorHandler("Payment proof not found.", 404));
-    }
-    proof = await PaymentProof.findByIdAndUpdate(
-      id,
-      { status, amount },
-      {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-      }
-    );
-    res.status(200).json({
-      success: true,
-      message: "Payment proof amount and status updated.",
-      proof,
-    });
-  });
-  
-  export const deletePaymentProof = catchAsyncErrors(async (req, res, next) => {
-    const { id } = req.params;
-    const proof = await PaymentProof.findById(id);
-    if (!proof) {
-      return next(new ErrorHandler("Payment proof not found.", 404));
-    }
-    await proof.deleteOne();
-    res.status(200).json({
-      success: true,
-      message: "Payment proof deleted.",
     });
   });
 
@@ -129,36 +71,45 @@ export const deleteAuctionItem = catchAsyncErrors(async (req, res, next) => {
   });  
 
   export const monthlyRevenue = catchAsyncErrors(async (req, res, next) => {
-    const payments = await Commission.aggregate([
+    
+    const payments = await Payment.aggregate([
       {
-        $group: {
-          _id: {
-            month: { $month: "$createdAt" },
-            year: { $year: "$createdAt" },
-          },
-          totalAmount: { $sum: "$amount" },
+        $project: {
+          amount: 1, 
+          month: { $month: "$date" }, 
+          year: { $year: "$date" },        
         },
       },
       {
-        $sort: { "_id.year": 1, "_id.month": 1 },
+        $group: {
+          _id: { month: "$month", year: "$year" }, 
+          totalAmount: { $sum: "$amount" }, 
+        },
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1 }, 
       },
     ]);
   
-    const tranformDataToMonthlyArray = (payments, totalMonths = 12) => {
-      const result = Array(totalMonths).fill(0);
+   
+    const transformDataToMonthlyArray = (payments, totalMonths = 12) => {
+      const result = Array(totalMonths).fill(0); 
   
+     
       payments.forEach((payment) => {
+      
         result[payment._id.month - 1] = payment.totalAmount;
       });
   
       return result;
     };
   
-    const totalMonthlyRevenue = tranformDataToMonthlyArray(payments);
+  
+    const totalMonthlyRevenue = transformDataToMonthlyArray(payments);
+  
+
     res.status(200).json({
       success: true,
       totalMonthlyRevenue,
     });
   });
-    
-  
