@@ -6,6 +6,10 @@ import { RiAuctionFill } from "react-icons/ri";
 import Spinner from "./HomeSubComponents/custom-components/Spinner";
 import { getAuctionDetail } from "@/store/slices/auctionSlice";
 import { placeBid } from "@/store/slices/bidSlice";
+import { io } from "socket.io-client";
+import axios from "axios";
+// Initialize the socket connection here
+const socket = io("http://localhost:4000");
 
 const AuctionItem = () => {
   const { id } = useParams();
@@ -18,21 +22,72 @@ const AuctionItem = () => {
   const dispatch = useDispatch();
 
   const [amount, setAmount] = useState(0);
-  const handleBid = () => {
+  const [mydetails , changemydetails]=useState(null);
+  const handleBid = async () => {
     const formData = new FormData();
     formData.append("amount", amount);
-    dispatch(placeBid(id, formData));
-    dispatch(getAuctionDetail(id));
+    const wait = ()=>{setTimeout(()=>{console.log("wating for db to be updated")},5000)}
+    wait()
+    await dispatch(placeBid(id, formData));
+    wait()
+    await dispatch(getAuctionDetail(id));
+    wait()
+    // Emit a new bid event to the server
+    socket.emit("newBid", { auctionId: id, amount });
   };
-
+  
+  const fetchdetails = async(id) =>{
+    
+    try {
+      // Assuming `someData` has the id value
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/auctionitem/auctioniddetails",
+        { id },  // Send `id` in the request body
+        { withCredentials: true }
+      );
+      console.log(response.data)
+      dispatch(getAuctionDetail(id))
+      // auctionBidders=mydetails;
+    } catch (error) {
+      console.error(error);
+    }
+    
+  }
   useEffect(() => {
+    // Check authentication, redirect to home if not authenticated
     if (!isAuthenticated) {
       navigateTo("/");
+      return; // Return early if the user is not authenticated
     }
+    
+
+    // Fetch auction details when the component is mounted
     if (id) {
       dispatch(getAuctionDetail(id));
     }
-  }, [isAuthenticated]);
+
+    // Set up socket listener to handle "welcome" event
+    socket.on("welcome", (message) => {
+      console.log(message); // Log the welcome message from the server
+    });
+
+    // Set up socket listener to handle "refresh" event (for refreshing auction details after a bid)
+    socket.on("refresh", (updatedAuctionId) => {
+      console.log("Auction data refreshed for auction ID:", updatedAuctionId);
+      //placeBid(updatedAuctionId.auctionId, formData);
+      console.log(id);
+      fetchdetails(id);
+      //dispatch(placeBid(id, formData));
+      //dispatch(getAuctionDetail(id));
+      //getAuctionDetail(id); // Refresh auction details
+    });
+
+    // Clean up socket listeners when the component unmounts or re-renders
+    return () => {
+      socket.off("welcome"); // Remove the 'welcome' event listener
+      socket.off("refresh"); // Remove the 'refresh' event listener
+    };
+  }, [isAuthenticated, id, dispatch, navigateTo]);
 
   return (
     <section className="w-full min-h-screen px-6 pt-20 lg:pl-[320px] flex flex-col bg-white text-gray-900">

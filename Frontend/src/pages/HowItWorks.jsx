@@ -14,7 +14,7 @@ const HowItWorks = () => {
       icon: <FaUser />,
       title: "User Registration",
       description:
-        "Users must register or log in to perform operations such as posting auctions, bidding on items, accessing the dashboard, and sending payment proof.",
+        "Users must register to access the features of AuctionEdge ",
     },
     {
       icon: <FaGavel />,
@@ -26,20 +26,15 @@ const HowItWorks = () => {
       icon: <FaEnvelope />,
       title: "Winning Bid Notification",
       description:
-        "After winning an item, the highest bidder will receive an email with the Auctioneer's payment method information, including bank transfer, Easypaisa, and PayPal.",
+        "After winning an item, the highest bidder will receive an email with the Auctioneer's payment method information, including bank transfer,UPI Id",
     },
     {
       icon: <FaDollarSign />,
       title: "Commission Payment",
       description:
-        "If the Bidder pays, the Auctioneer must pay 5% of that payment to the platform. Failure to pay results in being unable to post new items, and a legal notice will be sent.",
+        "If the Bidder pays, the Auctioneer must pay 5% of that payment to the platform. Failure to pay results in being unable to post new items, and when paid then Auctioneer can place a new Auction.",
     },
-    {
-      icon: <FaFileInvoice />,
-      title: "Proof of Payment",
-      description:
-        "The platform receives payment proof as a screenshot and the total amount sent. Once approved by the Administrator, the unpaid commission of the Auctioneer will be adjusted accordingly.",
-    },
+  
     {
       icon: <FaRedo />,
       title: "Reposting Items",

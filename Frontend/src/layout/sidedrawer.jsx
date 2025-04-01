@@ -104,13 +104,16 @@ const SideDrawer = () => {
               </Link>
             </>
           ) : (
+            
+            <Link to="/" onClick={handleLogout} className="w-full">
             <button
-              onClick={handleLogout}
               className="w-full text-center bg-[#15317E] text-white py-2 rounded-md border-2 border-transparent 
               hover:border-[#15317E] hover:text-[#15317E] hover:bg-[#ffffff] transition"
             >
               Logout
             </button>
+          </Link>
+              
           )}
         </div>
 

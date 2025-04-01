@@ -70,7 +70,7 @@ const PayCommission = () => {
           }
         },
         theme: {
-          color: "#5f63b8",
+          color: "#15317E",
         },
       };
       const rzp = new window.Razorpay(options);
