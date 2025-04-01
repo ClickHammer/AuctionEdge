@@ -45,11 +45,11 @@ router.post('/order', isAuthenticated, isAuthorized("Auctioneer"), async (req, r
 });
 
 router.post("/verify", async (req, res) => {
-    console.log("Verify route hit");
+    
 
     try {
         const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-        console.log("Received data:", { razorpay_order_id, razorpay_payment_id, razorpay_signature });
+        
 
       
         const order = await razorpayInstance.orders.fetch(razorpay_order_id);
@@ -63,14 +63,14 @@ router.post("/verify", async (req, res) => {
         if (!userId) {
             return res.status(400).json({ message: "User ID not found in order receipt" });
         }
-        console.log(userId);
+        
       
         const user = await User.findById(userId);
         
         if (!user) {
             return res.status(404).json({ message: "User not found in database" });
         }
-        console.log(user);
+        
       
         const newPayment = new Payment({
             razorpay_order_id: razorpay_order_id,
@@ -99,9 +99,6 @@ router.get("/history", isAuthenticated, async (req, res) => {
         const { id: userId } = req.user;
         const payments = await Payment.find({ user: userId }).sort({ createdAt: -1 });
 
-        if (!payments.length) {
-            return res.status(404).json({ message: "No payments found" });
-        }
 
         return res.status(200).json({ success: true, payments });
     } catch (error) {

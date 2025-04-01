@@ -112,6 +112,7 @@ export const getAllItems = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getAuctionDetails = catchAsyncErrors(async (req, res, next) => {
+  console.log("fetching data from backend")
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return next(new ErrorHandler("Invalid Id format.", 400));
@@ -120,6 +121,21 @@ export const getAuctionDetails = catchAsyncErrors(async (req, res, next) => {
   if (!auctionItem) {
     return next(new ErrorHandler("Auction not found.", 404));
   }
+  const bidders = auctionItem.bids.sort((a, b) => b.amount - a.amount);
+  console.log(bidders)
+  res.status(200).json({
+    success: true,
+    auctionItem,
+    bidders,
+  });
+});
+
+export const getdetails = catchAsyncErrors(async (req, res) => {
+  const { id } = req.body; // Use req.body instead of req.params for POST requests
+  console.log(id);  // Ensure this is correct and matches your request payload
+  
+  const auctionItem = await Auction.findById(id);
+
   const bidders = auctionItem.bids.sort((a, b) => b.amount - a.amount);
   res.status(200).json({
     success: true,
