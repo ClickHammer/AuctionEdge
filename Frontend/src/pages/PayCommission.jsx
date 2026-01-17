@@ -11,7 +11,7 @@ const PayCommission = () => {
   useEffect(() => {
     const fetchUnpaidCommission = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/user/commission", {
+        const res = await axios.get("https://auctionedge1.onrender.com/api/user/commission", {
           withCredentials: true,
         });
         setUnpaidCommission(res.data.unpaidCommission);
@@ -22,7 +22,7 @@ const PayCommission = () => {
 
     const fetchPaymentHistory = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/payment/history", {
+        const res = await axios.get("https://auctionedge1.onrender.com/api/payment/history", {
           withCredentials: true,
         });
         setPaymentHistory(res.data.payments);
@@ -39,7 +39,7 @@ const PayCommission = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/payment/order",
+        "https://auctionedge1.onrender.com/api/payment/order",
         {},
         { withCredentials: true }
       );
@@ -58,7 +58,7 @@ const PayCommission = () => {
         handler: async (response) => {
           try {
             await axios.post(
-              "http://localhost:4000/api/payment/verify",
+              "https://auctionedge1.onrender.com/api/payment/verify",
               {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
