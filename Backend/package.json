@@ -12,7 +12,7 @@
   "description": "",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.3",
     "cloudinary": "^2.5.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -25,7 +25,7 @@
     "mongoose": "^8.13.1",
     "node-cron": "^3.0.3",
     "node-mailer": "^0.1.1",
-    "nodemailer": "^6.9.16",
+    "nodemailer": "^7.0.12",
     "razorpay": "^2.9.6",
     "socket.io": "^4.8.1"
   },
