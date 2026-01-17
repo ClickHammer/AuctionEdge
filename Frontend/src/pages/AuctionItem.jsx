@@ -9,7 +9,7 @@ import { placeBid } from "@/store/slices/bidSlice";
 import { io } from "socket.io-client";
 import axios from "axios";
 // Initialize the socket connection here
-const socket = io("http://localhost:4000");
+const socket = io("https://auctionedge1.onrender.com");
 
 const AuctionItem = () => {
   const { id } = useParams();
@@ -41,7 +41,7 @@ const AuctionItem = () => {
     try {
       // Assuming `someData` has the id value
       const response = await axios.post(
-        "http://localhost:4000/api/v1/auctionitem/auctioniddetails",
+        "https://auctionedge1.onrender.com/api/v1/auctionitem/auctioniddetails",
         { id },  // Send `id` in the request body
         { withCredentials: true }
       );
