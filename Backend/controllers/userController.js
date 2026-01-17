@@ -101,14 +101,20 @@ export const getProfile = catchAsyncErrors(async (req, res,next) => {
     })
 });
 export const logout = catchAsyncErrors(async (req, res, next) => {
-    res.status(200).cookie("token","",{
-        expires:new Date(Date.now()),
-        httpOnly:true,
-    }).json({
-        success:true,
-        message:"Logged out successfully",
+  res
+    .status(200)
+    .cookie("token", "", {
+      httpOnly: true,
+      secure: true,       // MUST match login cookie
+      sameSite: "none",   // MUST match login cookie
+      expires: new Date(Date.now()),
+    })
+    .json({
+      success: true,
+      message: "Logged out successfully",
     });
 });
+
 export const fetchLeaderboard = catchAsyncErrors(async (req, res, next) => {
     
         const users = await User.find({ moneySpent: { $gt: 0 } });
