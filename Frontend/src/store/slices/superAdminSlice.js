@@ -62,7 +62,7 @@ export const getMonthlyRevenue = () => async (dispatch) => {
   dispatch(superAdminSlice.actions.requestForMonthlyRevenue());
   try {
     const response = await axios.get(
-      "http://localhost:4000/api/v1/superadmin/monthlyincome",
+      "https://auctionedge1.onrender.com/api/v1/superadmin/monthlyincome",
       { withCredentials: true }
     );
     dispatch(
@@ -80,7 +80,7 @@ export const getAllUsers = () => async (dispatch) => {
   dispatch(superAdminSlice.actions.requestForAllUsers());
   try {
     const response = await axios.get(
-      "http://localhost:4000/api/v1/superadmin/users/getall",
+      "https://auctionedge1.onrender.com/api/v1/superadmin/users/getall",
       { withCredentials: true }
     );
     dispatch(superAdminSlice.actions.successForAllUsers(response.data));
@@ -93,7 +93,7 @@ export const deleteAuctionItem = (id) => async (dispatch) => {
   dispatch(superAdminSlice.actions.requestForAuctionItemDelete());
   try {
     const response = await axios.delete(
-      `http://localhost:4000/api/v1/superadmin/auctionitem/delete/${id}`,
+      `https://auctionedge1.onrender.com/api/v1/superadmin/auctionitem/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(superAdminSlice.actions.successForAuctionItemDelete());
