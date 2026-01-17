@@ -50,7 +50,7 @@ const UserProfile = () => {
                   <h3 className="text-lg font-semibold text-gray-700 border-b pb-2">Payment Details</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <InfoField label="Bank Name" value={user.paymentMethods.bankTransfer.bankName} />
-                    <InfoField label="Bank Account (IBAN)" value={user.paymentMethods.bankTransfer.bankAccountNumber} />
+                    <InfoField label="Bank Account " value={user.paymentMethods.bankTransfer.bankAccountNumber} />
                     <InfoField label="Bank Account Holder" value={user.paymentMethods.bankTransfer.bankAccountHolderName} />
                     <InfoField label="IFSC Code" value={user.paymentMethods.bankTransfer.ifscCode} />
                     <InfoField label="UPI Id" value={user.paymentMethods.upi.upiId} />

@@ -45,8 +45,11 @@ const PayCommission = () => {
       );
 
       const { data } = res.data;
+      console.log("ujjwal")
+      console.log(res.data)
       const options = {
-        key: "rzp_test_qMsZ3nSLQnmel1",
+      
+        key: "rzp_test_XdrcdRpwVqlExH",
         amount: data.amount,
         currency: data.currency,
         order_id: data.id,

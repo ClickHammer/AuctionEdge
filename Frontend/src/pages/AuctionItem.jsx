@@ -26,7 +26,7 @@ const AuctionItem = () => {
   const handleBid = async () => {
     const formData = new FormData();
     formData.append("amount", amount);
-    const wait = ()=>{setTimeout(()=>{console.log("wating for db to be updated")},5000)}
+    const wait = ()=>{setTimeout(()=>{console.log("wating for db to be updated")},500)}
     wait()
     await dispatch(placeBid(id, formData));
     wait()
