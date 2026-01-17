@@ -91,7 +91,7 @@ export const register = (data) => async (dispatch) => {
   dispatch(UserSlice.actions.registerRequest());
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/user/register",
+      "https://auctionedge1.onrender.com/api/v1/user/register",
       data,
       {
         withCredentials: true,
@@ -112,7 +112,7 @@ export const login = (data) => async (dispatch) => {
   dispatch(UserSlice.actions.loginRequest());
   try {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/user/login",
+      "https://auctionedge1.onrender.com/api/v1/user/login",
       data,
       {
         withCredentials: true,
@@ -132,7 +132,7 @@ export const login = (data) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/v1/user/logout",
+        "https://auctionedge1.onrender.com/api/v1/user/logout",
         { withCredentials: true }
       );
       dispatch(UserSlice.actions.logoutSuccess());
@@ -148,7 +148,7 @@ export const logout = () => async (dispatch) => {
   export const fetchUser = () => async (dispatch) => {
     dispatch(UserSlice.actions.fetchUserRequest());
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/user/me", {
+      const response = await axios.get("https://auctionedge1.onrender.com/api/v1/user/me", {
         withCredentials: true,
       });
       dispatch(UserSlice.actions.fetchUserSuccess(response.data.user));
@@ -164,7 +164,7 @@ export const logout = () => async (dispatch) => {
     dispatch(UserSlice.actions.fetchLeaderboardRequest());
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/v1/user/leaderboard",
+        "https://auctionedge1.onrender.com/api/v1/user/leaderboard",
         {
           withCredentials: true,
         }
