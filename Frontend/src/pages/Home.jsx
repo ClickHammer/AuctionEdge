@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import FeaturedAuctions from "./HomeSubComponents/FeaturedAuctions";
 import UpcomingAuctions from "./HomeSubComponents/UpcomingAuctions";
 import Leaderboard from "./HomeSubComponents/Leaderboard";
-import Spinner from "./HomeSubComponents/custom-components/Spinner";
+// import Spinner from "./HomeSubComponents/custom-components/Spinner";
 
 const Home = () => {
   const howItWorks = [

@@ -1,12 +1,12 @@
-import React from 'react'
-import {HashLoader} from "react-spinners"
+// import React from 'react'
+// import {HashLoader} from "react-spinners"
 
-const Spinner = () => {
-  return (
-    <div className='w-full min-h-[600px] flex justify-center items-center'>
-      <HashLoader size={130} color='#15317E'/>
-    </div>
-  )
-}
+// const Spinner = () => {
+//   return (
+//     <div className='w-full min-h-[600px] flex justify-center items-center'>
+//       <HashLoader size={130} color='#15317E'/>
+//     </div>
+//   )
+// }
 
-export default Spinner
+// export default Spinner
