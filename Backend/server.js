@@ -5,7 +5,7 @@ import { Server } from "socket.io"; // Import the socket.io server
 const server = http.createServer(app); // Use the existing app instance with http server
 const io = new Server(server, {
   cors: {
-    origin: "*", // Replace this with your frontend URL for production (e.g., "http://localhost:3000")
+    origin: "*", // Replace this with your frontend URL for production (e.g., "")
   }
 });
 

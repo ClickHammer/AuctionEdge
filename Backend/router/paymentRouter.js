@@ -7,14 +7,14 @@ import {Payment} from '../models/Payment.model.js';
 const router = express.Router();
 
 const razorpayInstance = new Razorpay({
-    key_id: 'rzp_test_qMsZ3nSLQnmel1',
-    key_secret:'IUq0nqWPBRRaxivAqQNlr6H6',
+    key_id: 'rzp_test_XdrcdRpwVqlExH',
+    key_secret:'xvP1FMJat7rFO0hl63LHb3iq',
 });
 router.post('/order', isAuthenticated, isAuthorized("Auctioneer"), async (req, res) => {
     try {
-        const { id: userId } = req.user; 
-        const user = await User.findById(userId);
-
+        const  user  = req.user; 
+        
+        
         if (!user || user.unpaidCommission === 0) {
             return res.json({
                 success: false,
@@ -26,9 +26,9 @@ router.post('/order', isAuthenticated, isAuthorized("Auctioneer"), async (req, r
             amount: Math.round(user.unpaidCommission * 100),
 
             currency: "INR",
-            receipt: userId,  
+            receipt: user.id,  
         };
-        console.log(userId);
+        
 
         razorpayInstance.orders.create(options, (error, order) => {
             if (error) {

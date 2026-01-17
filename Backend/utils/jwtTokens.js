@@ -5,7 +5,6 @@ export const generateToken=(user,message,statusCode,res)=>{
         expires :new Date(Date.now() + process.env.COOKIE_EXPIRY * 24 * 60 * 60 * 1000
     ),
     httpOnly:true})
-    //user: user
     .json({
         success:true,
         message,
