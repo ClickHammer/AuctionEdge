@@ -1,4 +1,4 @@
-import Spinner from "./HomeSubComponents/custom-components/Spinner";
+// import Spinner from "./HomeSubComponents/custom-components/Spinner";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -12,7 +12,7 @@ const Leaderboard = () => {
       
       <div className="flex-1 w-full max-w-7xl bg-white shadow-xl rounded-2xl p-4 sm:p-8 overflow-hidden">
         {loading ? (
-          <Spinner />
+         <div className="text-center mt-20 text-xl text-blue-800">Loading...</div>
         ) : (
           <>
             <div className="text-center mb-6">

@@ -1,4 +1,4 @@
-import Spinner from "./HomeSubComponents/custom-components/Spinner";
+// import Spinner from "./HomeSubComponents/custom-components/Spinner";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const UserProfile = () => {
     <>
       <section className="w-full ml-0 m-0 h-fit px-5 pt-20 lg:pl-[320px] flex flex-col min-h-screen py-4 justify-start bg-gray-100">
         {loading ? (
-          <Spinner />
+         <div className="text-center mt-20 text-xl text-blue-800">Loading...</div>
         ) : (
           <>
             <div className="bg-white mx-auto w-full max-w-4xl shadow-lg rounded-lg p-6 flex flex-col items-center">

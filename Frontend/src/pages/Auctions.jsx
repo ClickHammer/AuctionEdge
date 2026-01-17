@@ -1,5 +1,5 @@
 import Card from "./HomeSubComponents/custom-components/Card";
-import Spinner from "./HomeSubComponents/custom-components/Spinner";
+// import Spinner from "./HomeSubComponents/custom-components/Spinner";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -9,7 +9,7 @@ const Auctions = () => {
   return (
     <>
       {loading ? (
-        <Spinner />
+       <div className="text-center mt-20 text-xl text-blue-800">Loading...</div>
       ) : (
         <article className="w-full min-h-screen px-5 pt-20 transition-all duration-300 lg:pl-[320px] bg-[#F8F9FA] shadow-lg">
           {/* Auction Header */}

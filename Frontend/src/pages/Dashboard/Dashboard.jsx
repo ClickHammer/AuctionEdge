@@ -9,7 +9,7 @@ import {
 import AuctionItemDelete from "./sub-components/AuctionItemDelete";
 import BiddersAuctioneersGraph from "./sub-components/BiddersAuctioneersGraph";
 import PaymentGraph from "./sub-components/PaymentGraph";
-import Spinner from "/src/Pages/HomeSubComponents/custom-components/Spinner.jsx";
+// import Spinner from "/src/Pages/HomeSubComponents/custom-components/Spinner.jsx";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Dashboard = () => {
   return (
     <>
       {loading ? (
-        <Spinner />
+         <div className="text-center mt-20 text-xl text-blue-800">Loading...</div>
       ) : (
         <div className="w-full min-h-screen px-6 pt-20 lg:pl-[320px] flex flex-col gap-10 bg-gray-100 text-gray-900">
           <h1 className="text-blue-600 text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-center">

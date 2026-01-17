@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaGreaterThan } from "react-icons/fa";
 import { RiAuctionFill } from "react-icons/ri";
-import Spinner from "./HomeSubComponents/custom-components/Spinner";
+// import Spinner from "./HomeSubComponents/custom-components/Spinner";
 import { getAuctionDetail } from "@/store/slices/auctionSlice";
 import { placeBid } from "@/store/slices/bidSlice";
 import { io } from "socket.io-client";
@@ -99,7 +99,7 @@ const AuctionItem = () => {
         <span className="text-blue-600">{auctionDetail.title}</span>
       </div>
       {loading ? (
-        <Spinner />
+       <div className="text-center mt-20 text-xl text-blue-800">Loading...</div>
       ) : (
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mt-6">
           <div className="bg-gray-100 p-6 rounded-lg shadow-lg">

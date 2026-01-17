@@ -1,5 +1,5 @@
 import CardTwo from "./HomeSubComponents/custom-components/CardTwo";
-import Spinner from "./HomeSubComponents/custom-components/Spinner";
+// import Spinner from "./HomeSubComponents/custom-components/Spinner";
 import { getMyAuctionItems } from "@/store/slices/auctionSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +28,7 @@ const ViewMyAuctions = () => {
       <h1 className="text-blue-900 text-5xl font-extrabold mb-6">My Auctions</h1>
       
       {loading ? (
-        <Spinner />
+       <div className="text-center mt-20 text-xl text-blue-800">Loading...</div>
       ) : (
         <div className="flex flex-wrap gap-6 relative z-1">
           {myAuctions.length > 0 ? (
